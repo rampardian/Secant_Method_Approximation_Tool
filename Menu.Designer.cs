@@ -46,11 +46,12 @@
             // 
             // Iterationsdgv
             // 
+            Iterationsdgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             Iterationsdgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             Iterationsdgv.Location = new Point(12, 50);
             Iterationsdgv.Name = "Iterationsdgv";
             Iterationsdgv.RowHeadersWidth = 51;
-            Iterationsdgv.Size = new Size(823, 328);
+            Iterationsdgv.Size = new Size(917, 328);
             Iterationsdgv.TabIndex = 0;
             // 
             // label1
@@ -82,7 +83,7 @@
             // Ruleslbl
             // 
             Ruleslbl.AutoSize = true;
-            Ruleslbl.Location = new Point(448, 397);
+            Ruleslbl.Location = new Point(501, 397);
             Ruleslbl.Name = "Ruleslbl";
             Ruleslbl.Size = new Size(44, 20);
             Ruleslbl.TabIndex = 4;
@@ -148,7 +149,7 @@
             // Calcbtn
             // 
             Calcbtn.BackColor = SystemColors.ActiveCaption;
-            Calcbtn.Location = new Point(501, 608);
+            Calcbtn.Location = new Point(595, 613);
             Calcbtn.Name = "Calcbtn";
             Calcbtn.Size = new Size(334, 29);
             Calcbtn.TabIndex = 12;
@@ -160,7 +161,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(845, 652);
+            ClientSize = new Size(941, 652);
             Controls.Add(Calcbtn);
             Controls.Add(label5);
             Controls.Add(Xtxtbx);

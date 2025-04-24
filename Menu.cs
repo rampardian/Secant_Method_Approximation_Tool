@@ -1,5 +1,4 @@
 ﻿using NCalc;
-using NCalcAsync;
 
 namespace Secant_Method_Approximation_Tool
 {
@@ -11,26 +10,38 @@ namespace Secant_Method_Approximation_Tool
 
             Ruleslbl.Text =
                 "Input Guidelines:\n" +
-                "• The function must be in terms of 'x' (e.g., exp(-x) - x).\n" +
-                "• Use only supported syntax: exp(x), log(x), sin(x), etc.\n" +
-                "• Do not include '=' in the equation.\n" +
-                "• Use decimal points (e.g., 0.05).\n" +
-                "• Enter both guesses (x(i-1) and x(i)) as numeric values.\n" +
-                "• Error tolerance must be in percent (e.g., 0.05).";
+                "• Use 'e^(-x)' for exponentials (Euler’s number).\n" +
+                "• Use '^' for powers, e.g., 'x^2' for x squared.\n" +
+                "• Do not include '=' or 'f(x) ='.\n" +
+                "• Use decimal points for numbers (e.g., 0.05).\n" +
+                "• Input variables in lowercase 'x'.\n" +
+                "• Enter numeric values for x(i-1), x(i), and error.";
 
             Formulaslbl.Text =
+                "Secant Method Formula:\n" +
                 "Secant Method Formula:\n" +
                 "x(i+1) = x(i) - f(x(i)) * (x(i-1) - x(i)) / [f(x(i-1)) - f(x(i))]\n\n" +
                 "Termination Criterion:\n" +
                 "εa = |(x(i+1) - x(i)) / x(i+1)| * 100%";
         }
 
-        private async Task<double> EvaluateFunctionAsync(string function, double x)
+        private Task<double> EvaluateFunctionAsync(string function, double x)
         {
             var expr = new Expression(function);
+
+            // Define variables
             expr.Parameters["x"] = x;
-            var result = await expr.EvaluateAsync();
-            return Convert.ToDouble(result);
+            expr.Parameters["e"] = Math.E; // Treat 'e' as Euler’s number
+
+            try
+            {
+                var result = expr.Evaluate();
+                return Task.FromResult(Convert.ToDouble(result));
+            }
+            catch
+            {
+                throw new Exception("Error parsing or evaluating the expression.");
+            }
         }
 
 
