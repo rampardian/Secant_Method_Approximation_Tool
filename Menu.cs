@@ -1,4 +1,6 @@
 ﻿using NCalc;
+using ScottPlot;
+using ScottPlot.WinForms;
 
 namespace Secant_Method_Approximation_Tool
 {
@@ -100,7 +102,58 @@ namespace Secant_Method_Approximation_Tool
                     xi = xi_plus1;
                     iteration++;
                 }
+                formsPlot1.Plot.Clear();
 
+                // Generate values for the function curve (f(x)) for a smooth curve
+                double minX = xi_minus1 - 1;
+                double maxX = xi + 1;
+                double step = 0.01;  // Finer step for a smooth curve
+                List<double> xValues = new List<double>();
+                List<double> yValues = new List<double>();
+
+                for (double x = minX; x <= maxX; x += step)
+                {
+                    try
+                    {
+                        double y = await EvaluateFunctionAsync(func, x);
+                        xValues.Add(x);
+                        yValues.Add(y);
+                    }
+                    catch { }
+                }
+
+                // Plot the function curve (smooth line)
+                var funcPlot = formsPlot1.Plot.Add.Scatter(xValues.ToArray(), yValues.ToArray());
+                funcPlot.Label = "f(x)";
+                funcPlot.Color = Colors.Blue;
+                funcPlot.LineWidth = 2;  // Make the line a little thicker for visibility
+
+                // Plot secant points
+                List<double> secantX = new List<double>();
+                List<double> secantY = new List<double>();
+
+                foreach (DataGridViewRow row in Iterationsdgv.Rows)
+                {
+                    if (row.IsNewRow || row.Cells["x(i)"].Value == null) continue;
+
+                    double x_i = double.Parse(row.Cells["x(i)"].Value.ToString());
+                    double y_i = await EvaluateFunctionAsync(func, x_i);
+
+                    secantX.Add(x_i);
+                    secantY.Add(y_i);
+                }
+
+                // Plot secant points as red dots
+                var secantPlot = formsPlot1.Plot.Add.Scatter(secantX.ToArray(), secantY.ToArray());
+                secantPlot.Color = Colors.Red;  // Red for secant points
+                secantPlot.MarkerSize = 7;
+                secantPlot.Label = "Secant Points";
+
+                // Add title and labels
+                formsPlot1.Plot.Title("Secant Method Approximation");
+                formsPlot1.Plot.XLabel("x");
+                formsPlot1.Plot.YLabel("f(x)");
+                formsPlot1.Refresh();
                 MessageBox.Show($"Estimated Root: {xi.ToString("F6")}", "Result");
             }
             catch (Exception ex)

@@ -8,4 +8,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NCalc.Core" Version="5.4.1" />
+    <PackageReference Include="NCalcAsync" Version="5.4.1" />
+    <PackageReference Include="NCalcSync" Version="5.4.1" />
+    <PackageReference Include="ScottPlot" Version="5.0.55" />
+    <PackageReference Include="ScottPlot.WinForms" Version="5.0.55" />
+  </ItemGroup>
+
 </Project>
