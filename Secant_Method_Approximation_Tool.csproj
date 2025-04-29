@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MathosParser" Version="2.0.0" />
     <PackageReference Include="NCalc.Core" Version="5.4.1" />
     <PackageReference Include="NCalcAsync" Version="5.4.1" />
     <PackageReference Include="NCalcSync" Version="5.4.1" />
