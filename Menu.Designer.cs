@@ -67,7 +67,7 @@
             // 
             // XMinustxtbx
             // 
-            XMinustxtbx.Location = new Point(166, 866);
+            XMinustxtbx.Location = new Point(166, 778);
             XMinustxtbx.Name = "XMinustxtbx";
             XMinustxtbx.Size = new Size(114, 27);
             XMinustxtbx.TabIndex = 2;
@@ -75,7 +75,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(123, 869);
+            label2.Location = new Point(123, 781);
             label2.Name = "label2";
             label2.Size = new Size(37, 20);
             label2.TabIndex = 3;
@@ -84,7 +84,7 @@
             // Ruleslbl
             // 
             Ruleslbl.AutoSize = true;
-            Ruleslbl.Location = new Point(28, 626);
+            Ruleslbl.Location = new Point(28, 556);
             Ruleslbl.Name = "Ruleslbl";
             Ruleslbl.Size = new Size(44, 20);
             Ruleslbl.TabIndex = 4;
@@ -102,7 +102,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(28, 902);
+            label3.Location = new Point(28, 814);
             label3.Name = "label3";
             label3.Size = new Size(135, 20);
             label3.TabIndex = 7;
@@ -110,7 +110,7 @@
             // 
             // AppxErrortxtbx
             // 
-            AppxErrortxtbx.Location = new Point(166, 900);
+            AppxErrortxtbx.Location = new Point(166, 812);
             AppxErrortxtbx.Name = "AppxErrortxtbx";
             AppxErrortxtbx.Size = new Size(291, 27);
             AppxErrortxtbx.TabIndex = 6;
@@ -118,7 +118,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(88, 836);
+            label4.Location = new Point(88, 748);
             label4.Name = "label4";
             label4.Size = new Size(68, 20);
             label4.TabIndex = 9;
@@ -126,7 +126,7 @@
             // 
             // Functiontxtbx
             // 
-            Functiontxtbx.Location = new Point(166, 833);
+            Functiontxtbx.Location = new Point(166, 745);
             Functiontxtbx.Name = "Functiontxtbx";
             Functiontxtbx.Size = new Size(291, 27);
             Functiontxtbx.TabIndex = 8;
@@ -134,7 +134,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(312, 869);
+            label5.Location = new Point(312, 781);
             label5.Name = "label5";
             label5.Size = new Size(23, 20);
             label5.TabIndex = 11;
@@ -142,7 +142,7 @@
             // 
             // Xtxtbx
             // 
-            Xtxtbx.Location = new Point(343, 866);
+            Xtxtbx.Location = new Point(343, 778);
             Xtxtbx.Name = "Xtxtbx";
             Xtxtbx.Size = new Size(114, 27);
             Xtxtbx.TabIndex = 10;
@@ -150,7 +150,7 @@
             // Calcbtn
             // 
             Calcbtn.BackColor = SystemColors.ActiveCaption;
-            Calcbtn.Location = new Point(612, 902);
+            Calcbtn.Location = new Point(612, 814);
             Calcbtn.Name = "Calcbtn";
             Calcbtn.Size = new Size(334, 29);
             Calcbtn.TabIndex = 12;
@@ -171,7 +171,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(982, 953);
+            ClientSize = new Size(982, 853);
             Controls.Add(formsPlot1);
             Controls.Add(Calcbtn);
             Controls.Add(label5);
