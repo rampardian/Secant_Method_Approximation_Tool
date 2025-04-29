@@ -53,11 +53,13 @@ namespace Secant_Method_Approximation_Tool
         private async void Calcbtn_Click(object sender, EventArgs e)
         {
             Iterationsdgv.Rows.Clear();
+            formsPlot1.Plot.Clear(); // Clear previous plots
 
             try
             {
+                // Read input
                 string rawFunc = Functiontxtbx.Text.Trim();
-                processedFunction = rawFunc; // No processing needed with Mathos.Parser
+                processedFunction = rawFunc;
 
                 double xi_minus1 = double.Parse(XMinustxtbx.Text);
                 double xi = double.Parse(Xtxtbx.Text);
@@ -87,6 +89,9 @@ namespace Secant_Method_Approximation_Tool
                     f_xi.ToString("F6"),
                     "", "");
 
+                List<double> secantX = new List<double> { xi_minus1, xi };
+                List<double> secantY = new List<double> { f_xi_minus1, f_xi };
+
                 while (ea > es)
                 {
                     f_xi_minus1 = await EvaluateFunctionAsync(processedFunction, xi_minus1);
@@ -106,16 +111,67 @@ namespace Secant_Method_Approximation_Tool
                     xi_minus1 = xi;
                     xi = xi_plus1;
                     iteration++;
+
+                    secantX.Add(xi);
+                    double f_xi_current = await EvaluateFunctionAsync(processedFunction, xi);
+                    secantY.Add(f_xi_current);
                 }
 
                 MessageBox.Show($"Estimated Root: {xi.ToString("F6")}", "Result");
 
+                // Plotting after solving
+                List<double> xData = new List<double>();
+                List<double> yData = new List<double>();
 
+                double minX = xi - 2;
+                double maxX = xi + 2;
+                double step = 0.01;
+
+                for (double x = minX; x <= maxX; x += step)
+                {
+                    try
+                    {
+                        double y = await EvaluateFunctionAsync(processedFunction, x);
+                        xData.Add(x);
+                        yData.Add(y);
+                    }
+                    catch
+                    {
+                        // Skip bad points
+                    }
+                }
+
+                // Plot the function curve
+                var curve = formsPlot1.Plot.Add.Scatter(xData.ToArray(), yData.ToArray());
+                
+                // Plot secant points
+                var secantPoints = formsPlot1.Plot.Add.Scatter(secantX.ToArray(), secantY.ToArray());
+                curve.Color = Colors.Blue;
+                curve.LineWidth = 2;
+                curve.MarkerSize = 0;
+                curve.Label = "f(x)";
+
+                secantPoints.Color = Colors.Red;
+                secantPoints.MarkerSize = 7;
+                secantPoints.MarkerShape = MarkerShape.FilledCircle;
+                secantPoints.LineWidth = 0;
+                secantPoints.Label = "Secant Points";
+
+                formsPlot1.Plot.Title("Secant Method Approximation");
+                formsPlot1.Plot.Axes.Left.Label.Text = "f(x)";
+                formsPlot1.Plot.Axes.Bottom.Label.Text = "x";
+                formsPlot1.Plot.Axes.AutoScale();
+                formsPlot1.Plot.ShowLegend();
+
+                formsPlot1.Refresh();
+
+                formsPlot1.Refresh();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred:\n{ex.Message}", "Error");
             }
         }
+
     }
 }
