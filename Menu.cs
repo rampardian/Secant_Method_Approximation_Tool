@@ -3,6 +3,7 @@ using NCalc;
 using ScottPlot;
 using ScottPlot.WinForms;
 
+
 namespace Secant_Method_Approximation_Tool
 {
     public partial class Menu : Form
@@ -108,6 +109,8 @@ namespace Secant_Method_Approximation_Tool
                 }
 
                 MessageBox.Show($"Estimated Root: {xi.ToString("F6")}", "Result");
+
+
             }
             catch (Exception ex)
             {
